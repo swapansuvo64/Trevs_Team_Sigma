@@ -1,0 +1,136 @@
+<%- include('partials/header') %>
+
+<nav id="navbar" class="navbar-white">
+    <img src="images/logo-red1.png" class = "logo">
+    <ul class="nav-links">
+        <% for (let i = 1; i <= totalPages; i++) { %>
+          <li>
+            <a href="/<%= placeTitle %>?page=<%= i %>" <%= currentPage === i ? 'class="active"' : '' %>>Check <%= i %></a>
+          </li>
+        <% } %>
+      </ul>
+      
+    <a href="#" class="register-btn">Register Now</a>
+    <i class="fas fa-bars" onclick="togglebtn()"></i>
+</nav>
+<div class="container">
+<div class="list-container">
+    <div class="left-col">
+        <p>200+ Options</p>
+        <h1>Recommended Places In <%= placeTitle %></h1>
+        <% details.forEach(function(detail) { %>
+        <div class="house">
+            <div class="house-img">
+                <a href="/<%= placeTitle %>/<%= detail.name %>"><img src="data:image/jpeg;base64,<%= detail.imageBinary.toString('base64') %>" alt=""></a>
+            </div>
+            <div class="house-info">
+                <p>Private <%= detail.hoteltype %> in <%= placeTitle %></p>
+                <h3><%= detail.description %></h3>
+                <p><%= detail.bed %> Bedroom / <%= detail.bathroom %> Bathroom / Wifi / Kitchen</p>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+                <i class="far fa-star"></i>
+                <div class="house-price">
+                    <p><%= detail.guest %> Guest</p>
+                    <h4>$ <%= detail.price %> / <span>Day</span></h4>
+                </div>
+            </div>
+        </div>
+        <% }); %>
+    </div>
+    <div class="right-col">
+        <div class="sidebar">
+            <h2> Select Filters</h2>
+            <h3>Property Type</h3>
+            <form action="/<%= placeTitle %>" method="get">
+                <div class="filter">
+                    <input type="checkbox" name="House" value="House" onchange="this.form.submit()" ><p>House</p> <span>(<%= houseCount %>)</span>
+    
+                </div>
+                <div class="filter">
+                    <input type="checkbox" name="House" value="Hostel" onchange="this.form.submit()"><p>Hostel</p> <span>(<%= hostelCount %>)</span>
+                    
+                </div>
+                <div class="filter">
+                    <input type="checkbox" name="House" value="Flat" onchange="this.form.submit()"><p>Flat</p> <span>(<%= flatCount%>)</</span>
+                    
+                </div>
+                <div class="filter">
+                    <input type="checkbox" name="House" value="Villa"onchange="this.form.submit()"><p>Villa</p> <span>(<%= villaCount %>)</</span>
+                    
+                </div>
+                <div class="filter">
+                    <input type="checkbox" name="House" value="Guest-Suite" onchange="this.form.submit()"><p>Guest Suite</p> <span>(<%= guestSuiteCount %>)</</span>
+                    
+                </div>
+            </form>
+            
+            <h3>Price</h3>
+            <form action="/<%= placeTitle %>" method="get">
+                    
+            <div class="filter">
+                <input type="checkbox" name="priceRange" value="50" onchange="this.form.submit()"><p>Upto $50</p> <span>(<%= price50Count %>)</span>
+
+            </div>
+            <div class="filter">
+                <input type="checkbox" name="priceRange" value="60" onchange="this.form.submit()"><p>Upto $60</p> <span>(<%= price60Count %>)</span>
+                
+            </div>
+            <div class="filter">
+                <input type="checkbox" name="priceRange" value="70" onchange="this.form.submit()"><p>Upto $70</p> <span>(<%= price70Count %>)</span>
+                
+            </div>
+            <div class="filter">
+                <input type="checkbox" name="priceRange" value="80" onchange="this.form.submit()"><p>Upto $80</p> <span>(<%= price80Count %>)</span>
+                
+            </div>
+            <div class="filter">
+                <input type="checkbox" name="priceRange" value="90" onchange="this.form.submit()"><p>Upto $ 90</p> <span>(<%= price90Count %>)</span>
+                
+            </div>
+            <div class="filter">
+                <input type="checkbox" name="priceRange" value="100" onchange="this.form.submit()"><p>Up to $100</p> <span>(<%= price100Count %>)</span>
+                
+            </div>
+            <div class="filter">
+                <input type="checkbox" name="priceRange" value="10000" onchange="this.form.submit()"><p>$100+</p> <span>(<%= price10000Count %>)</span>
+                </div>
+            </form>
+            
+        </div>
+
+</div>
+</div>
+
+<div class="pagination">
+    <img src="images/arrow.png" alt="">
+    <% for (let i = 1; i <= totalPages; i++) { %>
+      <span>
+        <a href="/<%= placeTitle %>?page=<%= i %>" <%= currentPage === i ? 'class="current"' : '' %>><%= i %></a>
+      </span>
+    <% } %>
+    <img src="images/arrow.png" alt="" class="right-arrow">
+  </div>
+  
+    <div class="footer">
+    
+        <a href="https://facebook.com/"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://www.youtube.com/"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://twitter.com/"><i class="fa-brands fa-twitter"></i></a>
+        <a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a>
+        <p><HR><br>
+            © Copyright 2022 Sigma Team. All rights reserved.
+        </p>
+    </div>
+</div>
+<script>
+    var navbar =  document.getElementById("navbar");
+    function togglebtn(){
+        navbar.classList.toggle("hidemenu");
+    }
+</script>
+
+<%- include('partials/fotter') %>

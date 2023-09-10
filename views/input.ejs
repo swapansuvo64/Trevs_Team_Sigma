@@ -1,0 +1,92 @@
+<%- include("partials/header")-%>
+<h1>Compose</h1>
+<form method="post" action="/input" enctype="multipart/form-data">
+    <div class="form-group">
+
+        <input class="form-control" type="checkbox" value="Puri" name="Section-Name">
+        <label for="input">Puri</label>
+
+        <input class="form-control" type="checkbox" value="Chilka Lake" name="Section-Name">
+        <label for="input">Chilka Lake</label>
+
+        <input class="form-control" type="checkbox" value="Bhubaneswar" name="Section-Name">
+        <label for="input">Bhubaneswar</label>
+    
+        <input class="form-control" type="checkbox" value="Lingraj Templ" name="Section-Name">
+        <label for="input">Lingraj Templ</label>
+        
+        <input class="form-control" type="checkbox" value="Konark Temple" name="Section-Name">
+        <label for="input">Konark Temple</label>
+        
+        <input class="form-control" type="checkbox" value="Kaleshwar Temple" name="Section-Name">
+        <label for="input">Kaleshwar Temple</label>
+        
+        <!-- <input class="form-control" type="checkbox" value="New York" name="Section-Name">
+        <label for="input">New York</label>
+        
+        <input class="form-control" type="checkbox" value="New Delhi" name="Section-Name">
+        <label for="input">New Delhi</label>
+        
+        <input class="form-control" type="checkbox" value="Rajasthan" name="Section-Name">
+        <label for="input">Rajasthan</label>
+
+        <input class="form-control" type="checkbox" value="Paris" name="Section-Name">
+        <label for="input">Paris</label> -->
+        
+        
+        <label for="input">HotelTitle</label>
+        <input class="form-control" type="text" placeholder="HotelTitle" name="HotelTitle">
+        <label for="input">HotelType</label>
+        <input class="form-control" type="text" placeholder="HotelType" name="Hoteltype">
+        <label for="input">description</label>
+        <textarea class="form-control" name="description" id="para" cols="30" rows="5">
+        </textarea>
+            
+        <label for="input">Images</label>
+        <input type="file" name="image" accept="image/*">
+
+        <label for="input">HotelPrice</label>
+        <input class="form-control" type="number" placeholder="Price" name="HotelPrice">
+
+        <label for="input">Hotel-location</label>
+        <input class="form-control" type="text" placeholder="Location" name="Hotel-location">
+        <label for="input">Hotelowner</label>
+        <input class="form-control" type="text" placeholder="owner name" name="Hotelowner">
+        <label for="input">guest</label>
+        <input class="form-control" type="number" placeholder="guest" name="guest">
+        <label for="input">bed</label>
+        <input class="form-control" type="number" placeholder="bed" name="bed">
+        <label for="input">bathroom</label>
+        <input class="form-control" type="number" placeholder="bathroom" name="bathroom">
+        <label for="input">gogle-i-frame</label>
+        <input class="form-control" type="text" placeholder="gogle" name="gogle-i-frame">
+    </div>
+    <button class="btn btn-primary" type="submit" name="button">publish</button>
+</form>
+<%- include('partials/fotter') %>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("compose-form");
+        const publishButton = document.getElementById("publish-button");
+    
+        publishButton.addEventListener("click", async () => {
+            const formData = new FormData(form);
+    
+            try {
+                const response = await fetch("/compose", {
+                    method: "POST",
+                    body: formData
+                });
+    
+                if (response.ok) {
+                    console.log("Data submitted successfully");
+                } else {
+                    console.error("Data submission failed");
+            }
+        } catch (error) {
+            console.error("An error occurred:", error);
+        }
+    });
+});
+</script>
